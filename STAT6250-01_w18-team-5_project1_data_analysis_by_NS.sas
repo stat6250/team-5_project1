@@ -54,10 +54,10 @@ nor does it attempt to validate data in any way.
 Possible Follow-up Steps: More carefully clean the values of the variable
 'Bachelor's degree or higher, 2011-2015' of adults for each state
 ; 
-proc print data=Education;
+proc print data=Education_raw;
 run;
 
-proc means mean data=Education n;
+proc means mean data=Education_raw ;
 	class State;
 	var FIPS_Code State BachelorDegree_higher_2011_2015;
 	output out=Education_temp;
