@@ -80,15 +80,15 @@ proc print noobs data=Education_temp(obs=20);
 run;
 
 
-'Research Question: What is the mean data of state Taxee in attaining educated in 
-bachelor or higher degree using column "Bachelordegree_higher_2011_2015" and How much Taxes 
+'Research Question: What is the mean data of state Texas in attaining educated in 
+bachelor or higher degree using column "Bachelordegree_higher_2011_2015" and How much state Texas 
 is deviated from the well educated state';
 
 
-'Rationale: This would help determine the how mech Taxes is deviated from the most well educated.'
+'Rationale: This would help determine the how mech Texas is deviated from the most well educated.'
 ;
 *
-Methodology: Printing the average value of State Taxes.
+Methodology: Printing the average value of State Texas.
 
 Limitations: This methodology does not account for any States with missing data,
 nor does it attempt to validate data in any way.
