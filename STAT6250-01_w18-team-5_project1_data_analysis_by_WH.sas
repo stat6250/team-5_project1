@@ -44,14 +44,14 @@ Possible Follow-up Steps: More carefully clean the values of the variable
 
 proc means max data=Education_raw;
 	class State;
-	var  FIPS_Code State BachelorDegree_higher_2011_2015;
+	var  FIPS_Code State CH2011_15;
 	output out=Education_temp;
  
 run; 
 
 proc print noobs data=Education_temp(obs=20);
      ID State
-     var BachelorDegree_higher_2011_2015;
+     var CH2011_15;
 run;
 
 
@@ -76,7 +76,7 @@ proc sort data=Education_temp;
 by state;
 run; 
 proc print noobs data=Education_temp(obs=20);
-     var State Lessthanadiploma_2011_2015;
+     var State LHS2011_15;
 run;
 
 
@@ -98,7 +98,7 @@ possible illegal values, and better handle missing data.
 ;
 
 proc print noobs data=Education_temp where state EQ 'CA';
-     var State BachelorDegree_higher_2011_2015, AssociateDegree_2011_2015, HighSchoolDiploma_2011_2015, LessthanHighSchoolDiploma_2011_2015;
+     var State CH2011_15 C13Y2011_15 HS2011_15 LHS2011_15;
 run;
 
 
