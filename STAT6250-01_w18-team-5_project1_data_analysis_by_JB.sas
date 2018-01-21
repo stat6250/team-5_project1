@@ -29,16 +29,38 @@ title2
 ;
 
 *
-Methodology: Use PROC PRINT
+Methodology: Create a column that measures the change in Rural Urban
+Continuum Code from 2003 to 2013, and which changes the difference to
+a positive number to give the impression of an increase in how urban a
+place is.
+
+Then, sort the data to put the locations with the highest increase first,
+then sorted by each locations most recent RUCC, and then by the older RUCC.
+
+Then use PROC PRINT to show the states, areas, and RUCC values for the top
+50 urbanized locations.
 ;
-data Education_raw;
-		urban_increase = RUCC2013 - RUCC2003;
+data Education_raw_temp;
+	set Work.Education_raw;
+        urban_increase = (RUCC2013 - RUCC2003) * -1;
+run;
+
+proc sort data=Education_raw_temp;
+    by  descending urban_increase descending RUCC2013 descending RUCC2003;
 run;
 
 proc print
-				noobs
-				data = Education_raw
-		;
-		id
-		    State
-				
+        noobs
+            data = Education_raw_temp(obs=50)
+    ;
+    var
+        State
+        Area_name
+        RUCC2003
+        RUCC2013
+        urban_increase
+    ;
+run;
+
+
+

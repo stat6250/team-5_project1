@@ -29,11 +29,11 @@ the number of adults who reported on the 1970 census that they achieved a high
 school diploma and did not achieve any higher degrees.
 
 Column header key:
-FIPS_Code	    FIPS Code (five digit code that uniquely identifies US counties)
-State	        State
+FIPS_Code       FIPS Code (five digit code that uniquely identifies US counties)
+State           State
 Area_name       Area name (name of country, state, or county)
 RUCC2003        2003 Rural-urban Continuum Code (lower is more urban)
-UIC2003	        2003 Urban Influence Code (lower is more urban)
+UIC2003         2003 Urban Influence Code (lower is more urban)
 RUCC2013        2013 Rural-urban Continuum Code
 UIC2013         2013 Urban Influence Code
 LHS1970         Less than a high school diploma, 1970
