@@ -21,7 +21,7 @@ X "cd ""%substr(%sysget(SAS_EXECFILEPATH),1,%eval(%length(%sysget(SAS_EXECFILEPA
 
 
 * load external file that generates analytic dataset Education_analytic_file;
-%include '.\STAT6250-02_s17-team-5_project1_data_preparation.sas';
+%include '.\STAT6250-01_w18-team-5_project1_data_preparation.sas';
 
 title1
 'Research Question: What are the averages of adults attaining BachelorDegree or higher for each state for the period 2011-2015?';
@@ -34,8 +34,9 @@ footnote1
 
 *
 Methodology: First use If statements to Delete all those observations using 
-column 'Area_Name' which has country name(United State) and States(excluding counties).
-This way will claculate on actual total(sum) of each state, else average was calculating 
+column 'Area_Name' which has country name(United State) and States(excluding 
+counties).This way will claculate on actual total(sum) of each state, else 
+average was calculating 
 incorrectly by including State and Country data alog with conuties data). 
 
 Then Use PROC MEANS to calculate average of educational level 
@@ -71,7 +72,8 @@ RUN;
  
 proc means mean data = Education_temp  nonobs;
 var CH2011_15; 
-class State; 
+class State;
+output out=Education_temp1 mean = AVGEDU;
 run; 
 title;
 footnote;
@@ -85,7 +87,8 @@ title2
 'Rationale: This would help us to know the top well-educated state in the USA.';
 
 footnote1
-'We see the most well educated state for 2011-2015, attaining Bachelors degree or higher';
+'We see the most well educated state for 2011-2015, attaining Bachelors degree or higher'
+;
 
 *
 Methodology: Once we got the Mean for each state, now will compute Maximum
@@ -95,28 +98,17 @@ level for column 'CH2011_15'(Bachelor's degree or higher, 2011-2015).
 Limitation: 
 Possible Follow-up Steps: Desirable output Do NOT met, Since 
 ;
-PROC SORT DATA = Education_temp OUT = Education_max;
-BY Mean;
+
+
+PROC SORT DATA = Education_temp1 OUT = Education_max;
+BY decending AVGEDU;
 run;
-*proc means max data=Education_temp nonobs;
-*var CH2011_15; 
-*class State; 
-*output out=Education_max_temp 
-*max=Mean; 
-*run; 
- 
+proc print noobs data=Education_max;
+var State AVGEDU;
+run;
+
 title;
 footnote;
-
-*proc means data=clinic.diabetes;
-*var age height weight;
-*class sex;
-*output out=work.sum_gender
-*mean=AvgAge AvgHeight AvgWeight
-*min=MinAge MinHeight MinWeight;
-*run; 
-*proc print data=work.sum_gender;
-*run;  
 
 
 title1
@@ -133,8 +125,13 @@ title2
 Methodology: Printing the average(Mean) value of State Texas.
 ;
 
-proc print noobs data=Education_temp where state EQ 'TX';
-     var State CH2011_15;
-run;
+
+PROC SQL;
+ SELECT State, AVGEDU
+ FROM Education_max
+ WHERE State EQ 'TX' OR 
+       State EQ 'DC';
+QUIT; 
+
 
 
