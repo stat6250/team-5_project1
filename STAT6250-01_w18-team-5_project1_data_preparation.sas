@@ -135,3 +135,64 @@ proc sort
         FIPS_Code
     ;
 run;
+*
+Create a data file for Team 5 members to use for analysis questions, only
+keeping columns and adding new measures that will be used by one or more
+team members.
+;
+data education_analytic_file;
+    retain
+        FIPS_Code
+        State
+        Area_name
+        RUCC2003
+        RUCC2013
+        CH2011_15
+        PerCH2011_15
+        LHS2011_15
+        C13Y2011_15
+        HS2011_15
+        urban_increase
+        change_PerLHS
+        change_PerHS
+        change_PerC13
+        change_PerCH
+        pop2015
+        pop2000
+        change_pop2000_2015
+        perChange_pop2000_2015
+    ;
+	keep
+        FIPS_Code
+        State
+        Area_name
+        RUCC2003
+        RUCC2013
+        CH2011_15
+        PerCH2011_15
+        LHS2011_15
+        C13Y2011_15
+        HS2011_15
+        urban_increase
+        change_PerLHS
+        change_PerHS
+        change_PerC13
+        change_PerCH
+        pop2015
+        pop2000
+        change_pop2000_2015
+        perChange_pop2000_2015
+    ;
+    set education_raw;
+        urban_increase = (RUCC2013 - RUCC2003) * -1;
+        change_PerLHS = PerLHS2011_15 - PerLHS2000;
+        change_PerHS = PerHS2011_15 - PerHS2000;
+        change_PerC13 = PerC13Y2011_15 - PerC13Y2000;
+        change_PerCH = PerCH2011_15 - PerCH2000;
+        pop2015 = LHS2011_15 + HS2011_15 + C13Y2011_15 + CH2011_15;
+        pop2000 = LHS2000 + HS2000 + C13Y2000 + CH2000;
+        change_pop2000_2015 = pop2015 - pop2000;
+		perChange_pop2000_2015 = (change_pop2000_2015 / pop2000) * 100;
+	;
+    format perChange_pop2000_2015 4.2;
+run;
