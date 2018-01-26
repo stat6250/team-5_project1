@@ -45,7 +45,7 @@ Then use PROC PRINT to show the states, areas, and RUCC values for the top
 
 Limitations: It is unclear at this point if a significant increase in
 urbanization based upon RUCC will have an impact on educational attainment.
-It may be more useful to sort by ascending recent RUCC first, then by 
+It may be more useful to sort by ascending recent RUCC first, then by
 descending change in RUCC, and finally by descending old RUCC to better
 organize the areas by their most recent level of urbanization.
 
@@ -123,7 +123,7 @@ title;
 footnote;
 
 title1
-'Research Question 3: How much has the population of adults grown since 2000 in areas that have become heavily urbanized between 2003 and 2013?'
+'Research Question: How much has the population of adults grown since 2000 in areas that have become heavily urbanized between 2003 and 2013?'
 ;
 
 title2
