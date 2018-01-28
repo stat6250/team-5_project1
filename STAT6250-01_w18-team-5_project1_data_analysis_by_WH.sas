@@ -23,13 +23,13 @@ X "cd ""%substr(%sysget(SAS_EXECFILEPATH),1,%eval(%length(%sysget(SAS_EXECFILEPA
 %include '.\STAT6250-01_w18-team-5_project1_data_preparation.sas';
 
 title1
-'Research Question: What is the highest(maximum) education levels for each state for the period 2011-2015?';
+'Research Question: Which county has the highest(maximum) education levels for California for the period 2011-2015?';
 
 title2
-'Rationale: This will provide me the maximum educational level of adults for each state.';
+'Rationale: This will provide me the maximum educational level of adults for California.';
 
 footnote1
-'It appears the  maximum educationa level for BachelorDegree or higher, grouped by state for 2011-2015';
+'It appears the  maximum educationa level for BachelorDegree or higher, grouped by California for 2011-2015';
 
 *
 Methodology: Use IF statement to remove rows where CH2011_15 would represent the whole state which would mislead where the 
@@ -68,11 +68,14 @@ DATA Education_temp;
     OR Area_name = 'Wyoming' OR Area_name = 'Puerto Rico' THEN DELETE;
 RUN;
  
-PROC MEANS max data = Education_temp  nonobs;
-    var CH2011_15; 
-    class State;
-    output out=Education_max max = MAXGRAD;
+DATA Education_CA;
+    Set Education_Temp;
+	IF  State ^= 'CA' THEN DELETE;
+RUN;
+PROC MEANS data = Education_CA max;
+	var CH2011_15;
 RUN; 
+
 title;
 footnote;
 
