@@ -1,5 +1,5 @@
 *******************************************************************************;
-* Added an 80-character banner for reference **********************************;
+****************** Added an 80-character banner for reference *****************;
 *******************************************************************************;
 
 *
@@ -77,19 +77,24 @@ PerHS2011_15    Percent of adults with a high school diploma only, 2011-2015
 PerC13Y2011_15  Percent of adults completing some college or associate's degree, 2011-2015
 PerCH2011_15    Percent of adults with a bachelor's degree or higher, 2011-2015
 
-
-
 [Unique ID Schema] The column "FIPS_Code" is a primary key.
 ;
 
-* environmental setup;
+*
+Environmental setup
+;
 
-* setup environmental parameters;
+*
+Setup environmental parameters
+;
 
 %let inputDatasetUrl = https://github.com/stat6250/team-5_project1/blob/master/Education.xls?raw=true
 ;
 
-* load raw dataset over the wire;
+*
+Load raw dataset over the wire
+;
+
 %macro loadDataIfNotAlreadyAvailable(dsn,url,filetype);
     %put &=dsn;
     %put &=url;
@@ -118,13 +123,17 @@ PerCH2011_15    Percent of adults with a bachelor's degree or higher, 2011-2015
             %put Dataset &dsn. already exists. Please delete and try again.;
         %end;
 %mend;
+
 %loadDataIfNotAlreadyAvailable(
     education_raw,
     &inputDatasetUrl.,
     xls
 )
 
-* check raw dataset for duplicates with primary key;
+*
+Check raw dataset for duplicates with primary key
+;
+
 proc sort
         nodupkey
         data=education_raw
@@ -135,11 +144,13 @@ proc sort
         FIPS_Code
     ;
 run;
+
 *
 Create a data file for Team 5 members to use for analysis questions, only
 keeping columns and adding new measures that will be used by one or more
 team members.
 ;
+
 data education_analytic_file;
     retain
         FIPS_Code
@@ -162,7 +173,7 @@ data education_analytic_file;
         change_pop2000_2015
         perChange_pop2000_2015
     ;
-	keep
+    keep
         FIPS_Code
         State
         Area_name
@@ -192,7 +203,7 @@ data education_analytic_file;
         pop2015 = LHS2011_15 + HS2011_15 + C13Y2011_15 + CH2011_15;
         pop2000 = LHS2000 + HS2000 + C13Y2000 + CH2000;
         change_pop2000_2015 = pop2015 - pop2000;
-		perChange_pop2000_2015 = (change_pop2000_2015 / pop2000) * 100;
-	;
+        perChange_pop2000_2015 = (change_pop2000_2015 / pop2000) * 100;
+    ;
     format perChange_pop2000_2015 4.2;
 run;
