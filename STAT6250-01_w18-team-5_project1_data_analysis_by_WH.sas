@@ -39,7 +39,7 @@ footnote1
 *
 Methodology: Use IF statement to remove rows where CH2011_15 would 
 represent the whole state which would mislead where the maximum should be.
-Then use PROC MEANS statement to fin max for each state. 
+Then use proc means statement to fin max for each state. 
 
 Limitations: This methodology does not account for districts with 
 missing data, nor does it attempt to validate data in any way.
@@ -53,7 +53,7 @@ data
     set
         Work.Education_analytic_file
     ;
-    IF
+    if
         Area_name = 'United States' or Area_name = 'Alabama' 
         or Area_name = 'Alaska' or Area_name = 'Arizona' 
         or Area_name = 'California' or Area_name = 'Colorado' 
@@ -61,7 +61,7 @@ data
         or Area_name = 'Florida' or Area_name = 'Georgia' or Area_name = 'Hawaii'
         or Area_name = 'Idaho' or Area_name = 'Illinois' or Area_name = 'Indiana'
         or Area_name = 'Iowa' or Area_name = 'Kansas' or Area_name = 'Kentucky' 
-        or Area_name = 'Lousiana' or Area_name = 'Maine' or Area_name = 'Maryland'
+        or Area_name = 'Louisiana' or Area_name = 'Maine' or Area_name = 'Maryland'
         or Area_name = 'Massachusetts' or Area_name = 'Michigan' 
         or Area_name = 'Minnesota' or Area_name = 'Mississippi' 
         or Area_name = 'Missouri' or Area_name = 'Montana' 
@@ -85,7 +85,7 @@ data
         Education_CA
     ;
     set
-        Education_Temp
+        Education_temp
     ;
     if
         State ^= 'CA'
@@ -94,7 +94,8 @@ data
     ;
 run;
 proc means
-        data = Education_CA max
+        data = Education_CA
+        max
     ;
     var
         CH2011_15
@@ -129,8 +130,8 @@ and better handle missing data.
 ;
 proc means
         mean
-	data = Education_temp
-	nonobs
+        data = Education_temp
+        noobs
     ;
     var
         CH2011_15
@@ -145,19 +146,19 @@ proc means
 run; 
 proc sort
         data = Education_avg
-	OUT = Education_min
+        out = Education_min
     ;
-    BY
+    by
         AVGGRAD
     ;
-RUN;
-PROC PRINT
+run;
+proc print
         noobs
-	DATA=Education_min (obs=3)
+        data=Education_min (obs=3)
     ;
     var
         State
-	AVGGRAD
+        AVGGRAD
     ;
 run;
 title;
@@ -170,7 +171,7 @@ title1
 ;
 
 title2
-'Rationale: This would help determine how California''s eduation level is.'
+'Rationale: This would help determine how California''s education level is.'
 ;
 *
 Methodology: Create new dataset with only CA data. 
@@ -187,7 +188,7 @@ data
     set
         Education_temp
     ;
-    IF
+    if
         State ^= 'CA'
     then
         delete
