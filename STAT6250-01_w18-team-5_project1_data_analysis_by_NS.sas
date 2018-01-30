@@ -55,8 +55,12 @@ Country and States through SAS coding, need more research to delete the
 same in a more efficient way. Performance tuning of code needs to take care,
 if any.
 ;
-data Education_temp;
-    set Work.Education_analytic_file;
+data 
+        Education_temp
+    ;
+    set 
+        Work.Education_analytic_file
+    ;
     if
         Area_name = 'United States' or Area_name = 'Alabama'
         or Area_name = 'Alaska' or Area_name = 'Arizona'
@@ -84,12 +88,14 @@ data Education_temp;
         or Area_name = 'Washington' or Area_name = 'West Virginia'
         or Area_name = 'Wisconsin' or Area_name = 'Wyoming'
         or Area_name = 'Puerto Rico'
-    then delete
+    then 
+        delete
     ;
 run;
 proc means
         mean
-            data = Education_temp nonobs
+        data = Education_temp 
+        nonobs
     ;
     var
         CH2011_15
@@ -97,8 +103,9 @@ proc means
     class
         State
     ;
-    output out=Education_temp1
-    mean = AVGEDU
+    output 
+        out=Education_temp1
+        mean = AVGEDU
     ;
 run;
 title;
@@ -138,12 +145,13 @@ proc sort
         data=Education_temp1
         out=Education_max
     ;
-    by descending AVGEDU
+    by descending 
+        AVGEDU
     ;
 run;
 proc print
         noobs 
-            data=Education_max
+        data=Education_max
     ;
     var
         State 
@@ -191,7 +199,7 @@ proc sql
         where
             State EQ 'TX' or 
             State EQ 'DC'
-;
+    ;
 quit; 
 title;
 footnote;
