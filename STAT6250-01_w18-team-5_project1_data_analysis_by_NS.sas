@@ -40,9 +40,9 @@ footnote1
 *
 Methodology: First use If statements to DELETE all those observations using 
 column 'Area_Name' which has country name(United State) and States(excluding 
-Counties).This will calculate an accurae SUM for each state, else averages 
-will calculate inacurate (that includes States and Country(U.S.A) data along 
-with Counuties data). Then next Use PROC MEANS to calculate average number 
+Counties).This will calculate an accurate SUM for each state, else averages 
+will calculate inaccurate (that includes States and Country(U.S.A) data along 
+with Counties data). Then next Use PROC MEANS to calculate average number 
 of adults grouped by county for per state who have achieved the specified 
 level of educational level i.e Bachelor Degree or higher, of USA population 
 for 2011-2015 using column "CH2011_15" in the temporary dataset.
@@ -53,7 +53,7 @@ of U.S.A adult's educational growth for each state.
 
 Possible Follow-up Steps: The way I tried to DELETE the observations of 
 Country and State through SAS coding, need more research to delete the 
-same in a more efficent way.Performace tunning of code needs to taken care,
+same in a more efficient way. Performance tuning of code needs to take care,
 if any.
 ;
 DATA Education_temp;
@@ -62,8 +62,8 @@ DATA Education_temp;
         Area_name = 'United States' OR Area_name = 'Alabama'
         OR Area_name = 'Alaska' OR Area_name = 'Arizona'
         OR Area_name = 'California' OR Area_name = 'Colorado'
-        OR Area_name = 'Connecticut' OR Area_name = 'Delaware' 
-    	OR Area_name = 'Florida' OR Area_name = 'Georgia'
+        OR Area_name = 'Connecticut' OR Area_name = 'Delaware'
+        OR Area_name = 'Florida' OR Area_name = 'Georgia'
         OR Area_name = 'Hawaii'	OR Area_name = 'Idaho'
         OR Area_name = 'Illinois' OR Area_name = 'Indiana'
         OR Area_name = 'Iowa' OR Area_name = 'Kansas'
@@ -109,11 +109,11 @@ footnote;
 
 
 title1
-'Research Question: Which State is the most well-educated who attained Bachelor Degree or higher(2011-2015)?'
+'Research Question: Which State is the most well-educated who attained Bachelor Degree or higher (2011-2015)?'
 ;
 
 title2
-'Rationale: This would help us to know the top most well-educated state in USA for the year (2011-2015).'
+'Rationale: This would help us to know the top well-educated state in USA for the year (2011-2015).'
 ;
 
 footnote1
@@ -123,17 +123,17 @@ footnote1
 *
 Methodology: Once we got the Mean for each state(from above),now will compute
 highest mean from all States to know which state scored highest in 
-education level in attaining Bachelor's degree or higher(2011-2015).
+education level in attaining Bachelor's degree or higher (2011-2015).
 
 Limitation: Current report reflects average of 'CH2011_15' for only 2011-2015,
 however it did not include the last three to five decades which could provide 
-better comparison of U.S.A adult's educational growth for each state, beacuse 
+better comparison of U.S.A adult's educational growth for each state, because 
 growth in education impacts the growth in economic development.
 
-Possible Follow-up Steps: Formating is required such as label the columns 
-with meaningful name(Costomizing column name) if possible without changing 
-column lables in dataset preparation file using SAS code. 
-Performace tunning of code needs to taken care,if any. 
+Possible Follow-up Steps: Formatting is required such as label the columns 
+with meaningful name(Customizing column name) if possible without changing 
+column labels in dataset preparation file using SAS code. 
+Performance tuning of code needs to tak care,if any. 
 ;
 PROC SORT
         DATA=Education_temp1
@@ -166,7 +166,7 @@ title2
 ;
 
 footnote1
-'Report dipicts the comaprison between two states (District of Colombia and Texas) of adults avarage population who attained Bachelor Degree or higher (2011-2015).'
+'Report depicts the comparison between two states (District of Colombia and Texas) of adults average population who attained Bachelor Degree or higher (2011-2015).'
 ;
  
 *
@@ -180,7 +180,7 @@ or median of total average from the available states in the dataset.
 
 Possible Follow-up Steps: For future step, determining the 1st/3rd quartile
 or median of mean column(AVGDU)for comparing with the most well educated
-state. Performace tunning(code) needs to taken care,if any. 
+State. Performace tunning(code) needs to take care,if any. 
 ;
 PROC SQL
     ;
