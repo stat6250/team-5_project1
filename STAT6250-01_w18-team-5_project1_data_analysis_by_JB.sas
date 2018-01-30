@@ -12,6 +12,7 @@ in the same directory as this file.
 See the file referenced above for data set properties.
 ;
 
+
 * environmental setup;
 
 * set relative file import path to current directory;
@@ -19,6 +20,7 @@ X "cd ""%substr(%sysget(SAS_EXECFILEPATH),1,%eval(%length(%sysget(SAS_EXECFILEPA
 
 * load external file that generates analytic data set Education_raw;
 %include '.\STAT6250-01_w18-team-5_project1_data_preparation.sas';
+
 
 title1
 'Research Question: Which counties in the United States have become significantly more urban between 2003 and 2013?'
@@ -31,7 +33,6 @@ title2
 footnote1
 'Here we see twenty counties that have significantly urbanized from 2003 to 2013.'
 ;
-
 
 *
 Methodology: This step creates a new temporary dataset from the one created
@@ -103,6 +104,7 @@ urbanization.
 * Possible Follow-up Steps: Explore percent change in population of adults
 at each level of education between the two time frames.
 ;
+
 proc print
         noobs
             data = Education_JB_temp(obs=20)
@@ -122,6 +124,7 @@ run;
 title;
 footnote;
 
+
 title1
 'Research Question: How much has the population of adults grown since 2000 in areas that have become heavily urbanized between 2003 and 2013?'
 ;
@@ -133,6 +136,7 @@ title2
 footnote1
 'Based on this result, further detailed study may be required to determine if there is a significant link between population increase and level of educational attainment.'
 ;
+
 *
 Methodology: Using the previous sorted data set, include new measures
 created in the data prep file that compare the population of adults in
