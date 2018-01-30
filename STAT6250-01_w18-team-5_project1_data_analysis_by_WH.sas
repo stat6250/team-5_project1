@@ -8,7 +8,7 @@ This file uses the following analytic dataset to address several research
 questions regarding education levels in the USA subset on County levels
 
 Dataset Name: Education_analytic_file created in external file
-STAT6250-02_s17-team-5_project1_data_preparation.sas, which is assumed to be
+STAT6250-01_w18-team-5_project1_data_preparation.sas, which is assumed to be
 in the same directory as this file
 
 See included file for dataset properties
