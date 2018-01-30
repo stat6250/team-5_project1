@@ -41,7 +41,8 @@ Methodology: First, I use if statements to delete all those observations using
 column 'Area_Name' which has country name(United State) and States(excluding 
 Counties).This will calculate an accurate SUM for each state, else averages 
 will calculate inaccurate (that includes States and Country(U.S.A) data along 
-with Counties data). Then next use proc means to calculate average number of adults grouped by county for per state who have achieved the specified 
+with Counties data). Then next use proc means to calculate average number of 
+adults grouped by county for per state who have achieved the specified 
 level of educational level i.e Bachelor Degree or higher, of USA population 
 for 2011-2015 using column "CH2011_15" in the temporary dataset.
 
@@ -62,10 +63,10 @@ data Education_temp;
         or Area_name = 'California' or Area_name = 'Colorado'
         or Area_name = 'Connecticut' or Area_name = 'Delaware'
         or Area_name = 'Florida' or Area_name = 'Georgia'
-        or Area_name = 'Hawaii'	or Area_name = 'Idaho'
+        or Area_name = 'Hawaii' or Area_name = 'Idaho'
         or Area_name = 'Illinois' or Area_name = 'Indiana'
         or Area_name = 'Iowa' or Area_name = 'Kansas'
-        or Area_name = 'Kentucky' or Area_name = 'Lousiana'
+        or Area_name = 'Kentucky' or Area_name = 'Louisiana'
         or Area_name = 'Maine' or Area_name = 'Maryland'
         or Area_name = 'Massachusetts' or Area_name = 'Michigan'
         or Area_name = 'Minnesota' or Area_name = 'Mississippi'
@@ -172,13 +173,13 @@ Methodology: Using temporary data file from previous step, select average
 value of adults from Texas(TX) and District of Colombia(DC) using 
 proc sql procedure.
 
-Limitations: This report has choosen state Texas for comparison, without
+Limitations: This report has chosen state Texas for comparison, without
 taking any consideration of choosing any state with 1st or 3rd quartiles
 or median of total average from the available states in the dataset.
 
 Possible Follow-up Steps: For future step, determining the 1st/3rd quartile
 or median of mean column(AVGEDU)for comparing with the most well educated
-State. Performace tuning needs to take care, if any. 
+State. Performance tuning needs to take care, if any. 
 ;
 proc sql
     ;
