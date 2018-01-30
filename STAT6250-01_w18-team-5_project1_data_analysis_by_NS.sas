@@ -41,8 +41,7 @@ Methodology: First, I use if statements to delete all those observations using
 column 'Area_Name' which has country name(United State) and States(excluding 
 Counties).This will calculate an accurate SUM for each state, else averages 
 will calculate inaccurate (that includes States and Country(U.S.A) data along 
-with Counties data). Then next use proc means to calculate average number 
-of adults grouped by county for per state who have achieved the specified 
+with Counties data). Then next use proc means to calculate average number of adults grouped by county for per state who have achieved the specified 
 level of educational level i.e Bachelor Degree or higher, of USA population 
 for 2011-2015 using column "CH2011_15" in the temporary dataset.
 
@@ -58,12 +57,12 @@ if any.
 data Education_temp;
     set Work.Education_analytic_file;
     if
-        Area_name = 'United States' OR Area_name = 'Alabama'
-        OR Area_name = 'Alaska' OR Area_name = 'Arizona'
-        OR Area_name = 'California' OR Area_name = 'Colorado'
-        OR Area_name = 'Connecticut' OR Area_name = 'Delaware'
-        OR Area_name = 'Florida' OR Area_name = 'Georgia'
-        OR Area_name = 'Hawaii'	OR Area_name = 'Idaho'
+        Area_name = 'United States' or Area_name = 'Alabama'
+        or Area_name = 'Alaska' or Area_name = 'Arizona'
+        or Area_name = 'California' or Area_name = 'Colorado'
+        or Area_name = 'Connecticut' or Area_name = 'Delaware'
+        or Area_name = 'Florida' or Area_name = 'Georgia'
+        or Area_name = 'Hawaii'	or Area_name = 'Idaho'
         or Area_name = 'Illinois' or Area_name = 'Indiana'
         or Area_name = 'Iowa' or Area_name = 'Kansas'
         or Area_name = 'Kentucky' or Area_name = 'Lousiana'
