@@ -56,56 +56,52 @@ Country and State through SAS coding, need more research to delete the
 same in a more efficent way.Performace tunning of code needs to taken care,
 if any.
 ;
-DATA 
-		Education_temp
-	;
-	set 
-		Work.Education_analytic_file
-	;
-    IF 
-		Area_name = 'United States' OR Area_name = 'Alabama' 
-    	OR Area_name = 'Alaska' OR Area_name = 'Arizona' 
-    	OR Area_name = 'California' OR Area_name = 'Colorado' 
-    	OR Area_name = 'Connecticut' OR Area_name = 'Delaware' 
-    	OR Area_name = 'Florida' OR Area_name = 'Georgia' 
-		OR Area_name = 'Hawaii'	OR Area_name = 'Idaho' 
-		OR Area_name = 'Illinois' OR Area_name = 'Indiana'
-    	OR Area_name = 'Iowa' OR Area_name = 'Kansas' 
-		OR Area_name = 'Kentucky' OR Area_name = 'Lousiana' 
-		OR Area_name = 'Maine' OR Area_name = 'Maryland'
-		OR Area_name = 'Massachusetts' OR Area_name = 'Michigan' 
-		OR Area_name = 'Minnesota' OR Area_name = 'Mississippi' 
-		OR Area_name = 'Missouri' OR Area_name = 'Montana' 
-		OR Area_name = 'Nebraska' OR Area_name = 'Nevada' 
-    	OR Area_name = 'New Hampshire' OR Area_name = 'New Jersey' 
-    	OR Area_name = 'New Mexico' OR Area_name = 'New York' 
-    	OR Area_name = 'North Carolina' OR Area_name = 'North Dakota' 
-    	OR Area_name = 'Ohio' OR Area_name = 'Oklahoma'  
-    	OR Area_name = 'Oregon' OR Area_name = 'Pennsylvania' 
-    	OR Area_name = 'Rhode Island' OR Area_name = 'South Carolina' 
-    	OR Area_name = 'South Dakota' OR Area_name = 'Tennessee' 
-    	OR Area_name = 'Texas' OR Area_name = 'Utah' 
-		OR Area_name = 'Vermont' OR Area_name = 'Virginia' 
-		OR Area_name = 'Washington' OR Area_name = 'West Virginia' 
-		OR Area_name = 'Wisconsin' OR Area_name = 'Wyoming' 
-		OR Area_name = 'Puerto Rico' 
-	THEN DELETE
-	;
+DATA Education_temp;
+    set Work.Education_analytic_file;
+    IF
+        Area_name = 'United States' OR Area_name = 'Alabama'
+        OR Area_name = 'Alaska' OR Area_name = 'Arizona'
+        OR Area_name = 'California' OR Area_name = 'Colorado'
+        OR Area_name = 'Connecticut' OR Area_name = 'Delaware' 
+    	OR Area_name = 'Florida' OR Area_name = 'Georgia'
+        OR Area_name = 'Hawaii'	OR Area_name = 'Idaho'
+        OR Area_name = 'Illinois' OR Area_name = 'Indiana'
+        OR Area_name = 'Iowa' OR Area_name = 'Kansas'
+        OR Area_name = 'Kentucky' OR Area_name = 'Lousiana'
+        OR Area_name = 'Maine' OR Area_name = 'Maryland'
+        OR Area_name = 'Massachusetts' OR Area_name = 'Michigan'
+        OR Area_name = 'Minnesota' OR Area_name = 'Mississippi'
+        OR Area_name = 'Missouri' OR Area_name = 'Montana'
+        OR Area_name = 'Nebraska' OR Area_name = 'Nevada'
+        OR Area_name = 'New Hampshire' OR Area_name = 'New Jersey'
+        OR Area_name = 'New Mexico' OR Area_name = 'New York'
+        OR Area_name = 'North Carolina' OR Area_name = 'North Dakota'
+        OR Area_name = 'Ohio' OR Area_name = 'Oklahoma'
+        OR Area_name = 'Oregon' OR Area_name = 'Pennsylvania'
+        OR Area_name = 'Rhode Island' OR Area_name = 'South Carolina'
+        OR Area_name = 'South Dakota' OR Area_name = 'Tennessee'
+        OR Area_name = 'Texas' OR Area_name = 'Utah'
+        OR Area_name = 'Vermont' OR Area_name = 'Virginia'
+        OR Area_name = 'Washington' OR Area_name = 'West Virginia'
+        OR Area_name = 'Wisconsin' OR Area_name = 'Wyoming'
+        OR Area_name = 'Puerto Rico'
+    THEN DELETE
+    ;
 RUN;
 proc means
-		mean 
-		data = Education_temp nonobs
-	;
-	var 
-		CH2011_15
-	; 
-	class 
-		State
-	;
-	output out=Education_temp1 
-	mean = AVGEDU
-	;
-run; 
+        mean
+            data = Education_temp nonobs
+    ;
+    var
+        CH2011_15
+    ;
+    class
+        State
+    ;
+    output out=Education_temp1
+    mean = AVGEDU
+    ;
+run;
 title;
 footnote;
 
@@ -139,20 +135,21 @@ with meaningful name(Costomizing column name) if possible without changing
 column lables in dataset preparation file using SAS code. 
 Performace tunning of code needs to taken care,if any. 
 ;
-PROC SORT 
-		DATA=Education_temp1 
-		OUT=Education_max
-	;
-	BY decending 
-		AVGEDU
-	;
+PROC SORT
+        DATA=Education_temp1
+        OUT=Education_max
+    ;
+    by decending AVGEDU
+    ;
 run;
-proc print 
-		noobs data=Education_max
-	;
-	var 
-		State AVGEDU
-	;
+proc print
+        noobs 
+            data=Education_max
+    ;
+    var
+        State 
+        AVGEDU
+    ;
 run;
 title;
 footnote;
@@ -186,14 +183,16 @@ or median of mean column(AVGDU)for comparing with the most well educated
 state. Performace tunning(code) needs to taken care,if any. 
 ;
 PROC SQL
-	;
-	SELECT 
-		State, AVGEDU
-	FROM 
-		Education_max
-	WHERE 
-		State EQ 'TX' OR State EQ 'DC'
-	;
+    ;
+        SELECT
+            State, 
+            AVGEDU
+        FROM
+            Education_max
+        WHERE
+            State EQ 'TX' OR 
+            State EQ 'DC'
+;
 QUIT; 
 title;
 footnote;
