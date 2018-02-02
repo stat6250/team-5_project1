@@ -61,7 +61,7 @@ footnote;
 
 
 title1
-'Research Question: Which is the least educated state using column Less than a High School Diploma, 2011-2015?'
+'Research Question: Which is the least educated state using column Bachelor Defree or higher, 2011-2015?'
 ;
 
 title2
