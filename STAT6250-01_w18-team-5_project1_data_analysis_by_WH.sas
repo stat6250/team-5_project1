@@ -47,55 +47,9 @@ missing data, nor does it attempt to validate data in any way.
 Possible Follow-up Steps: Compare the max by year
 ; 
 
-data
-        Education_temp
-    ;
-    set
-        Work.Education_analytic_file
-    ;
-    if
-        Area_name = 'United States' or Area_name = 'Alabama' 
-        or Area_name = 'Alaska' or Area_name = 'Arizona' 
-        or Area_name = 'California' or Area_name = 'Colorado' 
-        or Area_name = 'Connecticut' or Area_name = 'Delaware' 
-        or Area_name = 'Florida' or Area_name = 'Georgia' or Area_name = 'Hawaii'
-        or Area_name = 'Idaho' or Area_name = 'Illinois' or Area_name = 'Indiana'
-        or Area_name = 'Iowa' or Area_name = 'Kansas' or Area_name = 'Kentucky' 
-        or Area_name = 'Louisiana' or Area_name = 'Maine' or Area_name = 'Maryland'
-        or Area_name = 'Massachusetts' or Area_name = 'Michigan' 
-        or Area_name = 'Minnesota' or Area_name = 'Mississippi' 
-        or Area_name = 'Missouri' or Area_name = 'Montana' 
-        or Area_name = 'Nebraska' or Area_name = 'Nevada' 
-        or Area_name = 'New Hampshire' or Area_name = 'New Jersey' 
-        or Area_name = 'New Mexico' or Area_name = 'New York' 
-        or Area_name = 'North Carolina' or Area_name = 'North Dakota' 
-        or Area_name = 'Ohio' or Area_name = 'Oklahoma'  
-        or Area_name = 'Oregon' or Area_name = 'Pennsylvania' 
-        or Area_name = 'Rhode Island' or Area_name = 'South Carolina' 
-        or Area_name = 'South Dakota' or Area_name = 'Tennessee' 
-        or Area_name = 'Texas' or Area_name = 'Utah' or Area_name = 'Vermont' 
-        or Area_name = 'Virginia' or Area_name = 'Washington' 
-        or Area_name = 'West Virginia' or Area_name = 'Wisconsin' 
-        or Area_name = 'Wyoming' or Area_name = 'Puerto Rico'
-    then
-        delete
-    ;
-run;
-data
-        Education_CA
-    ;
-    set
-        Education_temp
-    ;
-    if
-        State ^= 'CA'
-    then
-        delete
-    ;
-run;
-proc means
+proc print
+        noobs
         data = Education_CA
-        max
     ;
     var
         CH2011_15
@@ -128,30 +82,6 @@ of the variable Bachelordegree_higher_2011_2015 so that the
 statistics computed do not include any possible illegal values,
 and better handle missing data.
 ;
-proc means
-        mean
-        data = Education_temp
-        noobs
-    ;
-    var
-        CH2011_15
-    ; 
-    class
-        State
-    ;
-    output
-        out=Education_avg
-        mean = AVGGRAD
-    ;
-run; 
-proc sort
-        data = Education_avg
-        out = Education_min
-    ;
-    by
-        AVGGRAD
-    ;
-run;
 proc print
         noobs
         data=Education_min (obs=3)
@@ -182,18 +112,6 @@ with missing data, nor does it attempt to validate data in any way.
 
 Possible Follow-up Steps: Expand it to other education level.
 ;
-data
-        Education_CA
-    ;
-    set
-        Education_temp
-    ;
-    if
-        State ^= 'CA'
-    then
-        delete
-    ;
-run;
 proc gplot 
         data = Education_CA
     ;
