@@ -49,7 +49,7 @@ Possible Follow-up Steps: Compare the max by year
 
 proc print
         noobs
-        data = Education_CA
+        data = Education_WH1
     ;
     var
         CH2011_15
@@ -84,11 +84,11 @@ and better handle missing data.
 ;
 proc print
         noobs
-        data=Education_min (obs=3)
+        data=Education_WH2 (obs=3)
     ;
     var
         State
-        AVGGRAD
+        AVGGEDU
     ;
 run;
 title;
@@ -113,7 +113,7 @@ with missing data, nor does it attempt to validate data in any way.
 Possible Follow-up Steps: Expand it to other education level.
 ;
 proc gplot 
-        data = Education_CA
+        data = Education_WH3
     ;
     title
         'California Education Analysis by counties'
