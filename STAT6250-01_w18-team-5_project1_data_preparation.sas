@@ -273,6 +273,7 @@ proc means
         mean
         data = Education_analytic_file
         nonobs
+	maxdec = 2
     ;
     var
         CH2011_15
@@ -323,18 +324,12 @@ data
     ;
 run;
 
-proc means
-        noprint
-        max
-        data = Education_WH3
-        nonobs
+proc sort
+        data=Education_WH3
+	out=Education_WH1
     ;
-    var
+    by descending
         CH2011_15
-    ;
-    output
-        out = Education_WH1
-        max = MAXEDU
     ;
 run;
 
