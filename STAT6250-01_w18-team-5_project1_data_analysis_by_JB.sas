@@ -1,6 +1,8 @@
 *******************************************************************************;
 
 *
+STAT6250-01_w18-team-5_project1_data_analysis_by_JB.sas
+
 This file uses the following analytic data set to address several research
 questions regarding educational attainment in each county and state in the
 United States over several decades.
@@ -54,17 +56,11 @@ Possible Follow-up Steps: Look into how to deal with missing values so that
 the sorting method noted above can be implemented in the future.
 ;
 
-data Education_JB_temp;
-	set Work.Education_analytic_file;
-run;
 
-proc sort data=Education_JB_temp;
-    by descending urban_increase RUCC2013 descending RUCC2003;
-run;
 
 proc print
         noobs
-            data = Education_JB_temp(obs=20)
+            data = Education_JB1(obs=20)
     ;
     var
         State
@@ -107,7 +103,7 @@ at each level of education between the two time frames.
 
 proc print
         noobs
-            data = Education_JB_temp(obs=20)
+            data = Education_JB1(obs=20)
     ;
     var
         State
@@ -161,7 +157,7 @@ file. I should find out why this did not work and correct it.
 
 proc print
         noobs
-            data = Education_JB_temp(obs=20)
+            data = Education_JB1(obs=20)
     ;
     var
         State
