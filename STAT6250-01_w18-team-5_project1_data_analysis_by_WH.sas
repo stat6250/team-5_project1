@@ -49,9 +49,11 @@ Possible Follow-up Steps: Compare the max by year
 
 proc print
         noobs
-        data = Education_WH1
+        data = Education_WH1 (obs=1)
     ;
     var
+        State
+        AREA_NAME
         CH2011_15
     ;
 run; 
