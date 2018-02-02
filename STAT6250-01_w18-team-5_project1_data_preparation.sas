@@ -244,6 +244,8 @@ data education_analytic_file;
     ;
 run;
 
+
+
 *
 Create data file for use in analysis by JB
 ;
@@ -254,4 +256,49 @@ run;
 
 proc sort data=Education_JB_temp;
     by descending urban_increase RUCC2013 descending RUCC2003;
+run;
+
+
+*
+Create data file for use in analysis by NS
+;
+
+proc means
+        noprint
+        mean
+        data = Education_analytic_file
+        nonobs
+    ;
+    var
+        CH2011_15
+    ;
+    class
+        State
+    ;
+    output
+        out=Education_analytic_file_NS1
+        mean = AVGEDU
+    ;
+run;
+
+proc print data=Education_analytic_file_NS1;
+    var CH2011_15 AVGEDU;
+run;
+
+proc sort
+        data=Education_analytic_file_NS1
+        out=Education_analytic_file_NS2
+    ;
+    by descending
+        AVGEDU
+    ;
+run;
+proc print
+        noobs
+        data=Education_analytic_file_NS2
+    ;
+    var
+        State
+        AVGEDU
+    ;
 run;
