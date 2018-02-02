@@ -90,7 +90,7 @@ proc print
     ;
     var
         State
-        AVGGEDU
+        AVGEDU
     ;
 run;
 title;
