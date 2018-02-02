@@ -85,6 +85,10 @@ Environmental setup
 ;
 
 *
+Create output formats
+;
+
+*
 Setup environmental parameters
 ;
 
@@ -149,9 +153,53 @@ run;
 Create a data file for Team 5 members to use for analysis questions, only
 keeping columns and adding new measures that will be used by one or more
 team members.
+
+Since only county-level data will be used in analyses by Team 5, remove any
+observations of non-counties (i.e. states, countries).
 ;
 
 data education_analytic_file;
+    set education_raw;
+        urban_increase = (RUCC2013 - RUCC2003) * -1;
+        change_PerLHS = PerLHS2011_15 - PerLHS2000;
+        change_PerHS = PerHS2011_15 - PerHS2000;
+        change_PerC13 = PerC13Y2011_15 - PerC13Y2000;
+        change_PerCH = PerCH2011_15 - PerCH2000;
+        pop2015 = LHS2011_15 + HS2011_15 + C13Y2011_15 + CH2011_15;
+        pop2000 = LHS2000 + HS2000 + C13Y2000 + CH2000;
+        change_pop2000_2015 = pop2015 - pop2000;
+        perChange_pop2000_2015 = (change_pop2000_2015 / pop2000) * 100;
+    ;
+    if
+        Area_name = 'United States' or Area_name = 'Alabama'
+        or Area_name = 'Alaska' or Area_name = 'Arizona'
+        or Area_name = 'California' or Area_name = 'Colorado'
+        or Area_name = 'Connecticut' or Area_name = 'Delaware'
+        or Area_name = 'Florida' or Area_name = 'Georgia'
+        or Area_name = 'Hawaii' or Area_name = 'Idaho'
+        or Area_name = 'Illinois' or Area_name = 'Indiana'
+        or Area_name = 'Iowa' or Area_name = 'Kansas'
+        or Area_name = 'Kentucky' or Area_name = 'Louisiana'
+        or Area_name = 'Maine' or Area_name = 'Maryland'
+        or Area_name = 'Massachusetts' or Area_name = 'Michigan'
+        or Area_name = 'Minnesota' or Area_name = 'Mississippi'
+        or Area_name = 'Missouri' or Area_name = 'Montana'
+        or Area_name = 'Nebraska' or Area_name = 'Nevada'
+        or Area_name = 'New Hampshire' or Area_name = 'New Jersey'
+        or Area_name = 'New Mexico' or Area_name = 'New York'
+        or Area_name = 'North Carolina' or Area_name = 'North Dakota'
+        or Area_name = 'Ohio' or Area_name = 'Oklahoma'
+        or Area_name = 'Oregon' or Area_name = 'Pennsylvania'
+        or Area_name = 'Rhode Island' or Area_name = 'South Carolina'
+        or Area_name = 'South Dakota' or Area_name = 'Tennessee'
+        or Area_name = 'Texas' or Area_name = 'Utah'
+        or Area_name = 'Vermont' or Area_name = 'Virginia'
+        or Area_name = 'Washington' or Area_name = 'West Virginia'
+        or Area_name = 'Wisconsin' or Area_name = 'Wyoming'
+        or Area_name = 'Puerto Rico'
+    then
+        delete
+    ;
     retain
         FIPS_Code
         State
@@ -194,16 +242,16 @@ data education_analytic_file;
         change_pop2000_2015
         perChange_pop2000_2015
     ;
-    set education_raw;
-        urban_increase = (RUCC2013 - RUCC2003) * -1;
-        change_PerLHS = PerLHS2011_15 - PerLHS2000;
-        change_PerHS = PerHS2011_15 - PerHS2000;
-        change_PerC13 = PerC13Y2011_15 - PerC13Y2000;
-        change_PerCH = PerCH2011_15 - PerCH2000;
-        pop2015 = LHS2011_15 + HS2011_15 + C13Y2011_15 + CH2011_15;
-        pop2000 = LHS2000 + HS2000 + C13Y2000 + CH2000;
-        change_pop2000_2015 = pop2015 - pop2000;
-        perChange_pop2000_2015 = (change_pop2000_2015 / pop2000) * 100;
-    ;
-    format perChange_pop2000_2015 4.2;
+run;
+
+*
+Create data file for use in analysis by JB
+;
+
+data Education_JB_temp;
+	set Education_analytic_file;
+run;
+
+proc sort data=Education_JB_temp;
+    by descending urban_increase RUCC2013 descending RUCC2003;
 run;
