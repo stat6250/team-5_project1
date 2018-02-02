@@ -51,7 +51,18 @@ with missing data, nor does it attempt to validate data in any way.
 ;
 proc print 
         noobs 
-        data=Education_NS1
+        data=Education_NS1 (obs=20)
+		LABEL
+   ;
+   label 
+       AVGEDU = 'Average of Adults(USA) attained Bachelor Degree or higher(2011-2015)'
+   ;
+   format 
+       AVGEDU 12.2
+   ;
+   var 
+       State
+	   AVGEDU
    ;
 run;
 title;
@@ -68,11 +79,11 @@ title2
 ;
 
 footnote1
-'Based on the above output, now we have the most well educated state i.e "DC", attained the Bachelor Degree or higher educational level(2011-2015).'
+'Based on the above output, we have the top 5 most well educated state, attained the Bachelor Degree or higher educational level(2011-2015).'
 ;
 
 footnote2
-'Moreover, we can see the virtually top educated states, suggesting to encorage education facility to the dorminant states.'
+'Moreover, over the virtually top educated states, suggesting to encourage education facility to below average dorminant states.'
 ;
 
 *
@@ -88,14 +99,15 @@ growth in education impacts the growth in economic development.
 Possible Follow-up Steps: May expand this report with late year columns
 for better comparisons.
 ;
-proc print
-        noobs 
-        data=Education_NS2
-    ;
-    var
-        State 
-        AVGEDU
-    ;
+
+ proc gchart data=Education_NS2;
+ title1 ‘Analysis of Most Well Educated States, USA(2011-2015)’;
+format AVGEDU 12.2;
+where State in ('DC', 'CA', 'MA' , 'CT', 'NJ');
+ label AVGEDU = 'Average of Adults attained Bachelor Degree or higher'
+       State  = 'State grouped by Counties';       
+vbar State / sumvar=AVGEDU type=mean;
+
 run;
 title;
 footnote;
@@ -132,6 +144,9 @@ proc sql
         select
             State, 
             AVGEDU
+		FORMAT=12.2
+        LABEL=
+            'Deviation Btw DC and TX'
         from
             Education_NS2
         where
