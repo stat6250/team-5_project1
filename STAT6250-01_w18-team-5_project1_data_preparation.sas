@@ -264,6 +264,10 @@ run;
 Create data files for use in analysis by NS
 ;
 
+*
+The data set Education_NS1 will also be resorted and used by WH
+;
+
 proc means
         noprint
         mean
@@ -307,7 +311,7 @@ Create files for use in analysis by WH
 ;
 
 data
-        Education_WH0
+        Education_WH3
     ;
     set
         Education_analytic_file
@@ -318,21 +322,27 @@ data
         delete
     ;
 run;
+
 proc means
-        data = Education_WH0
+        noprint
         max
+        data = Education_WH3
+        nonobs
     ;
     var
         CH2011_15
     ;
+    output
+        out = Education_WH1
+        max = MAXEDU
+    ;
 run;
 
-proc print
-        noobs
-        data=Education_WH1
+proc sort
+        data=Education_NS1
+        out=Education_WH2
     ;
-    var
-        Area_name
-        EDUMAX
+    by
+        AVGEDU
     ;
 run;
