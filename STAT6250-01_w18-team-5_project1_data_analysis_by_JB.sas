@@ -60,7 +60,7 @@ the sorting method noted above can be implemented in the future.
 
 proc print
         noobs
-            data = Education_JB_temp(obs=20)
+            data = Education_JB1(obs=20)
     ;
     var
         State
@@ -103,7 +103,7 @@ at each level of education between the two time frames.
 
 proc print
         noobs
-            data = Education_JB_temp(obs=20)
+            data = Education_JB1(obs=20)
     ;
     var
         State
@@ -157,7 +157,7 @@ file. I should find out why this did not work and correct it.
 
 proc print
         noobs
-            data = Education_JB_temp(obs=20)
+            data = Education_JB1(obs=20)
     ;
     var
         State

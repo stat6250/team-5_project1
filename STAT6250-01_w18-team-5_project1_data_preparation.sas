@@ -250,17 +250,18 @@ run;
 Create data file for use in analysis by JB
 ;
 
-data Education_JB_temp;
+data Education_JB1;
 	set Education_analytic_file;
 run;
 
-proc sort data=Education_JB_temp;
+proc sort data=Education_JB1;
     by descending urban_increase RUCC2013 descending RUCC2003;
 run;
 
 
+
 *
-Create data file for use in analysis by NS
+Create data files for use in analysis by NS
 ;
 
 proc means
@@ -276,29 +277,62 @@ proc means
         State
     ;
     output
-        out=Education_analytic_file_NS1
+        out=Education_NS0
         mean = AVGEDU
     ;
 run;
 
-proc print data=Education_analytic_file_NS1;
-    var CH2011_15 AVGEDU;
+data Education_NS1;
+    set Work.Education_NS0;
+    if
+        _TYPE_ = 0
+    then
+        delete;
+    ;
 run;
 
 proc sort
-        data=Education_analytic_file_NS1
-        out=Education_analytic_file_NS2
+        data=Education_NS1
+        out=Education_NS2
     ;
     by descending
         AVGEDU
     ;
 run;
-proc print
-        noobs
-        data=Education_analytic_file_NS2
+
+
+
+*
+Create files for use in analysis by WH
+;
+
+data
+        Education_WH0
+    ;
+    set
+        Education_analytic_file
+    ;
+    if
+        State ^= 'CA'
+    then
+        delete
+    ;
+run;
+proc means
+        data = Education_WH0
+        max
     ;
     var
-        State
-        AVGEDU
+        CH2011_15
+    ;
+run;
+
+proc print
+        noobs
+        data=Education_WH1
+    ;
+    var
+        Area_name
+        EDUMAX
     ;
 run;
