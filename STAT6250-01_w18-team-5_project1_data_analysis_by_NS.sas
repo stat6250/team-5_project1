@@ -25,7 +25,7 @@ X "cd ""%substr(%sysget(SAS_EXECFILEPATH),1,%eval(%length(%sysget(SAS_EXECFILEPA
 
 
 title1
-'Research Question: What is the average of adults population attained Bachelor Degree or higher for each state (2011-2015)?'
+'Research Question: What is the average of adults who attained Bachelor Degree or higher for each state (2011-2015)?'
 ;
 
 title2
@@ -79,10 +79,6 @@ title2
 'Rationale: This would help us to know the top well-educated state in USA for the year (2011-2015).'
 ;
 
-title3
-'Analysis of Most Well Educated States, USA (2011- 2015)'
-;
-
 footnote1
 'Based on the above output, we have the top 10 most well educated state, attained the Bachelor Degree or higher educational level (2011-2015).'
 ;
@@ -113,7 +109,7 @@ for better comparisons.
     axis2 label=(f="Arial/Bold" 
                      "State Grouped by Counties")
     ;
-proc gchart
+ proc gchart
         data=Education_NS2
     ;
     format
@@ -127,7 +123,7 @@ proc gchart
     width=15
     raxis= axis1
     maxis= axis2
-    coutline=black
+    coutline=blue
    ;  
 run;
 title;
