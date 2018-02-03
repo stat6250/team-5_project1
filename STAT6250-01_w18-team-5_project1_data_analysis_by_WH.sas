@@ -53,8 +53,8 @@ proc print
     ;
     var
         State
-        AREA_NAME
-        CH2011_15
+        County
+        Adults_with_Bachelor_or_above
     ;
 run; 
 title;
@@ -121,7 +121,7 @@ proc gplot
         'California Education Analysis by counties'
     ;
     plot
-        CH2011_15*AREA_NAME
+        Adults_with_Bachelor_or_above*County
     ;
         axis1 order = (0 to 25000000 by 10000);
 run;
