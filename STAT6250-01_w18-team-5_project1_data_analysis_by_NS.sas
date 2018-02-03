@@ -29,7 +29,7 @@ title1
 ;
 
 title2
-'Rationale: This provides the average education level of adults attained Bachelor Degree or higher(2011-2015) for each state.'
+'Rationale: This provides the average education level of adults attained Bachelor Degree or higher (2011-2015) for each state.'
 ;
 
 footnote1
@@ -51,18 +51,19 @@ with missing data, nor does it attempt to validate data in any way.
 ;
 proc print 
         noobs 
-        data=Education_NS1 (obs=20)
-		LABEL
+            data=Education_NS1 (obs=20)
+                                     LABEL
    ;
    label 
-       AVGEDU = 'Average of Adults(USA) attained Bachelor Degree or higher(2011-2015)'
+       AVGEDU = 
+        'Adults Average in USA attained Bachelor Degree or higher (2011-2015)'
    ;
    format 
-       AVGEDU 12.2
+       AVGEDU comma10.2
    ;
    var 
        State
-	   AVGEDU
+       AVGEDU
    ;
 run;
 title;
@@ -78,12 +79,16 @@ title2
 'Rationale: This would help us to know the top well-educated state in USA for the year (2011-2015).'
 ;
 
+title3
+'Analysis of Most Well Educated States, USA (2011- 2015)'
+;
+
 footnote1
-'Based on the above output, we have the top 5 most well educated state, attained the Bachelor Degree or higher educational level(2011-2015).'
+'Based on the above output, we have the top 10 most well educated state, attained the Bachelor Degree or higher educational level (2011-2015).'
 ;
 
 footnote2
-'Moreover, over the virtually top educated states, suggesting to encourage education facility to below average dorminant states.'
+'However, over the virtually top educated states, suggesting to encourage education facility to below average deprived states.'
 ;
 
 *
@@ -99,15 +104,31 @@ growth in education impacts the growth in economic development.
 Possible Follow-up Steps: May expand this report with late year columns
 for better comparisons.
 ;
-
- proc gchart data=Education_NS2;
- title1 ‘Analysis of Most Well Educated States, USA(2011-2015)’;
-format AVGEDU 12.2;
-where State in ('DC', 'CA', 'MA' , 'CT', 'NJ');
- label AVGEDU = 'Average of Adults attained Bachelor Degree or higher'
-       State  = 'State grouped by Counties';       
-vbar State / sumvar=AVGEDU type=mean;
-
+    pattern1 color=grayCC
+    ;
+    axis1 label=(a=90 f="Arial/Bold"
+                     "Average of Adults Attained Bachelor Degree or Higher ") 
+    order=(10000 to 300000 by 25000)
+    ;
+    axis2 label=(f="Arial/Bold" 
+                     "State Grouped by Counties")
+    ;
+proc gchart
+        data=Education_NS2
+    ;
+    format
+        AVGEDU comma10.0
+    ;
+    where 
+        State in ('DC','CA','MA','CT','NJ','AZ','NY','MD','DE','HI')
+    ;
+    vbar State / discrete type=mean
+           sumvar=AVGEDU mean
+    width=15
+    raxis= axis1
+    maxis= axis2
+    coutline=black
+   ;  
 run;
 title;
 footnote;
@@ -119,16 +140,20 @@ title1
 ;
 
 title2
-'Rationale: This determines how far Texas is behind from District of Colombia in attaining higher education.'
+'Rationale: This determines how far Texas is behind from District of Columbia in attaining higher education.'
 ;
 
 footnote1
-'Report depicts the comparison between two states (District of Colombia and Texas) of adults average population who attained Bachelor Degree or higher (2011-2015).'
+'Report depicts the comparison between two states (District of Columbia and Texas) of adults average population who attained Bachelor Degree or higher (2011-2015).'
+;
+
+footnote2
+'Moreover, we can see that virtual deviations that may effect U.S.A economy growth.'
 ;
  
 *
 Methodology: Using temporary data file from previous step, select average 
-value of adults from Texas(TX) and District of Colombia(DC) using 
+value of adults from Texas(TX) and District of Columbia(DC) using 
 proc sql procedure.
 
 Limitations: This report has chosen state Texas for comparison, without
@@ -136,7 +161,7 @@ taking any consideration of choosing any state with 1st or 3rd quartiles
 or median of total average from the available states in the dataset.
 
 Possible Follow-up Steps: For future step, determining the 1st/3rd quartile
-or median of mean column(AVGEDU)for comparing with the most well educated
+or median of mean column (AVGEDU) for comparing with the most well educated
 State. Performance tuning needs to take care, if any. 
 ;
 proc sql
@@ -144,8 +169,8 @@ proc sql
         select
             State, 
             AVGEDU
-		FORMAT=12.2
-        LABEL=
+        format=comma10.2
+        label=
             'Deviation Btw DC and TX'
         from
             Education_NS2
