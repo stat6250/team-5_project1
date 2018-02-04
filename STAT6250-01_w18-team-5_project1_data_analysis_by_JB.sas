@@ -1,4 +1,7 @@
 *******************************************************************************;
+**************** 80-character banner for column width reference ***************;
+* (set window width to banner width to calibrate line length to 80 characters *;
+*******************************************************************************;
 
 *
 STAT6250-01_w18-team-5_project1_data_analysis_by_JB.sas
@@ -14,7 +17,6 @@ in the same directory as this file.
 See the file referenced above for data set properties.
 ;
 
-
 * environmental setup;
 
 * set relative file import path to current directory;
@@ -22,6 +24,7 @@ X "cd ""%substr(%sysget(SAS_EXECFILEPATH),1,%eval(%length(%sysget(SAS_EXECFILEPA
 
 * load external file that generates analytic data set Education_raw;
 %include '.\STAT6250-01_w18-team-5_project1_data_preparation.sas';
+
 
 
 title1
@@ -37,14 +40,9 @@ footnote1
 ;
 
 *
-Methodology: This step creates a new temporary dataset from the one created
-in the data prep file, sorting the list of counties first by the increase
-in Rural Urban Continuum Code for the area, then by the 2013 RUCC for that
-area, and then by the 2003 RUCC. This places areas that have increased
-their RUCC the most at the top of the pack.
-
-Then use PROC PRINT to show the states, areas, and RUCC values for the top
-20 urbanized locations.
+Methodology: This step uses PROC PRINT to display columns from the temporary
+file created in the data preparation step. It shows the states, areas, and RUCC
+values for the top 20 most urbanized locations.
 
 Limitations: It is unclear at this point if a significant increase in
 urbanization based upon RUCC will have an impact on educational attainment.
@@ -55,9 +53,6 @@ organize the areas by their most recent level of urbanization.
 Possible Follow-up Steps: Look into how to deal with missing values so that
 the sorting method noted above can be implemented in the future.
 ;
-
-
-
 proc print
         noobs
         label
@@ -75,33 +70,34 @@ title;
 footnote;
 
 
+
 title1
-'Research Question: Of the areas that have recently urbanized, what is the percent change in educational attainment for each category between 2000 and 2015?'
+'Research Question: In recently urbanized areas, what is the change in educational attainment for each category from 2000 to 2015?'
 ;
 
 title2
 'Rationale: We want to explore how the proportions of educational attainment change when an area becomes heavily urbanized.'
 ;
+
 footnote1
 'It appears that in areas that have become more heavily urbanized, the proportion of highly educated people in that area has generally increased.'
 ;
 
 *
-Methodology: Using the sorted temporary dataset from the previous step,
+Methodology: Reusing the sorted temporary data set from the previous step,
 display the change in proportions for educational attainment in each area
 using the calculated measures found in the data prep file.
 
-* Limitations: This calculation was prepared by finding the difference in
+Limitations: This calculation was prepared by finding the difference in
 the percentage measure found in the original data set. It is possible that
 a calculation showing the percent change in the population of adults of
 various levels of education in each area would provide a more interesting
 result for the purpose of tracking educational attainment with respect to
 urbanization.
 
-* Possible Follow-up Steps: Explore percent change in population of adults
+Possible Follow-up Steps: Explore percent change in population of adults
 at each level of education between the two time frames.
 ;
-
 proc print
         noobs
         label
@@ -123,12 +119,13 @@ title;
 footnote;
 
 
+
 title1
-'Research Question: How much has the population of adults grown since 2000 in areas that have become heavily urbanized between 2003 and 2013?'
+'Research Question: How has the population of adults grown in areas that have become heavily urbanized between 2003 and 2013?'
 ;
 
 title2
-'Rationale: Understanding the magnitude of the change in population may help put the percent change of educational attainment into context.'
+'Rationale: Understanding the magnitude of population change may help put the change in educational attainment into context.'
 ;
 
 footnote1
@@ -136,10 +133,10 @@ footnote1
 ;
 
 *
-Methodology: Using the previous sorted data set, include new measures
-created in the data prep file that compare the population of adults in
-each time period and the percent change in adult population. An earlier
-iteration of this step included the calculations within the analysis
+Methodology: Using the same sorted data set from the previous steps, include
+new measures created in the data prep file that compare the population of
+adults in each time period and the percent change in adult population. An
+earlier iteration of this step included the calculations within the analysis
 file rather than in the data prep file.
 
 Limitations: The population figure is not the true population of a given
@@ -161,7 +158,6 @@ values as percentages. In such a case, any percentages to be represented
 could be displayed using the PERCENT9.1 format, with the word "percent" removed
 from the column labels to eliminate redundancy.
 ;
-
 proc print
         noobs
         label
