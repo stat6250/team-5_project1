@@ -18,6 +18,7 @@ See the file referenced above for data set properties.
 ;
 
 
+
 * environmental setup;
 
 * set relative file import path to current directory;
@@ -25,6 +26,7 @@ X "cd ""%substr(%sysget(SAS_EXECFILEPATH),1,%eval(%length(%sysget(SAS_EXECFILEPA
 
 * load external file that generates analytic data set Education_raw;
 %include '.\STAT6250-01_w18-team-5_project1_data_preparation.sas';
+
 
 
 title1
@@ -59,8 +61,6 @@ Possible Follow-up Steps: Look into how to deal with missing values so that
 the sorting method noted above can be implemented in the future.
 ;
 
-
-
 proc print
         noobs
         label
@@ -76,6 +76,7 @@ proc print
 run;
 title;
 footnote;
+
 
 
 title1
@@ -94,14 +95,14 @@ Methodology: Using the sorted temporary dataset from the previous step,
 display the change in proportions for educational attainment in each area
 using the calculated measures found in the data prep file.
 
-* Limitations: This calculation was prepared by finding the difference in
+Limitations: This calculation was prepared by finding the difference in
 the percentage measure found in the original data set. It is possible that
 a calculation showing the percent change in the population of adults of
 various levels of education in each area would provide a more interesting
 result for the purpose of tracking educational attainment with respect to
 urbanization.
 
-* Possible Follow-up Steps: Explore percent change in population of adults
+Possible Follow-up Steps: Explore percent change in population of adults
 at each level of education between the two time frames.
 ;
 
@@ -124,6 +125,7 @@ proc print
 run;
 title;
 footnote;
+
 
 
 title1
