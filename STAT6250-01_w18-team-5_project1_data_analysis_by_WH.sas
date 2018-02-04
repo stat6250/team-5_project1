@@ -87,6 +87,7 @@ and better handle missing data.
 ;
 proc print
         noobs
+        label
         data=Education_WH2 (obs=3)
     ;
     var
