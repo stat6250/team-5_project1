@@ -26,7 +26,7 @@ X "cd ""%substr(%sysget(SAS_EXECFILEPATH),1,%eval(%length(%sysget(SAS_EXECFILEPA
 
 
 title1
-'Research Question: Which county has the highest(maximum) education levels for California for the period 2011-2015?'
+'Research Question: Which county has the highest (maximum) education levels for California for the period 2011-2015?'
 ;
 
 title2
@@ -34,7 +34,7 @@ title2
 ;
 
 footnote1
-'It shows that the  maximum educational level for Bachelor Degree or higher, grouped by California for 2011-2015'
+'It shows that the maximum educational level for Bachelor Degree or higher, grouped by California for 2011-2015'
 ;
 *
 Methodology: Use IF statement to remove rows where CH2011_15 would 
@@ -49,6 +49,7 @@ Possible Follow-up Steps: Compare the max by year
 
 proc print
         noobs
+        label
         data = Education_WH1 (obs=1)
     ;
     var
@@ -63,7 +64,7 @@ footnote;
 
 
 title1
-'Research Question: Which is the least educated state using column Bachelor Defree or higher, 2011-2015?'
+'Research Question: Which is the least educated state using column Bachelor Degree or higher, 2011-2015?'
 ;
 
 title2
@@ -80,12 +81,13 @@ Limitations: This methodology does not account for any States
 with missing data, nor does it attempt to validate data in any way.
 
 Possible Follow-up Steps: More carefully clean the values 
-of the variable Bachelordegree_higher_2011_2015 so that the 
+of the variable CH2011_15 so that the 
 statistics computed do not include any possible illegal values,
 and better handle missing data.
 ;
 proc print
         noobs
+        label
         data=Education_WH2 (obs=3)
     ;
     var
@@ -120,10 +122,14 @@ proc gplot
     title
         'California Education Analysis by counties'
     ;
+    axis1 label = ('County')
+    ;
+    axis2 label = ('Adults with Bachelor or Higher')
+    ;
     plot
         CH2011_15*AREA_NAME
+        / vaxis=axis2 haxis=axis1
     ;
-        axis1 order = (0 to 25000000 by 10000);
 run;
 title;
 footnote;

@@ -293,7 +293,6 @@ proc means
         mean
         data = Education_analytic_file
         nonobs
-	maxdec = 2
     ;
     var
         CH2011_15
@@ -359,5 +358,8 @@ proc sort
     ;
     by
         AVGEDU
+    ;
+    format
+        AVGEDU 8.2
     ;
 run;
