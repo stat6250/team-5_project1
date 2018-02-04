@@ -60,6 +60,7 @@ the sorting method noted above can be implemented in the future.
 
 proc print
         noobs
+        label
             data = Education_JB1(obs=20)
     ;
     var
@@ -82,7 +83,7 @@ title2
 'Rationale: We want to explore how the proportions of educational attainment change when an area becomes heavily urbanized.'
 ;
 footnote1
-'It appears that in areas that have become more heavily urbanized, the proportion of highly educated people in that area generally increases.'
+'It appears that in areas that have become more heavily urbanized, the proportion of highly educated people in that area has generally increased.'
 ;
 
 *
@@ -103,6 +104,7 @@ at each level of education between the two time frames.
 
 proc print
         noobs
+        label
             data = Education_JB1(obs=20)
     ;
     var
@@ -150,13 +152,19 @@ Possible Follow-up Steps: With 13 columns displayed in this step, the
 results viewer is becoming unwieldy. It may be appropriate to pare down
 which columns are included, or to include different measures that would
 more effectively express the relationship between educational attainment
-and urbanization. Also, the "label" keyword did not affect the column
-headers in the output, so the section was removed from the data prep
-file. I should find out why this did not work and correct it.
+and urbanization. Also, the numbers that are represented as percentages
+in this example are displayed as numbers without in-line percent symbols,
+due to the format of the data in the original data file. In a future release,
+either the format of the data in the original file could be altered, or
+additional processing could take place in the data prep step to cast any such
+values as percentages. In such a case, any percentages to be represented
+could be displayed using the PERCENT9.1 format, with the word "percent" removed
+from the column labels to eliminate redundancy.
 ;
 
 proc print
         noobs
+        label
             data = Education_JB1(obs=20)
     ;
     var
@@ -173,6 +181,12 @@ proc print
         pop2015
         change_pop2000_2015
         perChange_pop2000_2015
+    ;
+    format
+        pop2000 comma9.
+        pop2015 comma9.
+        change_pop2000_2015 comma9.
+        perChange_pop2000_2015 comma9.1
     ;
 run;
 title;
