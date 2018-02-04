@@ -293,7 +293,6 @@ proc means
         mean
         data = Education_analytic_file
         nonobs
-	maxdec = 2
     ;
     var
         CH2011_15
@@ -342,6 +341,10 @@ data
     then
         delete
     ;
+    rename
+        AREA_NAME=County
+	CH2011_15=Adults_with_Bachelor_or_above
+    ;
 run;
 
 proc sort
@@ -359,5 +362,8 @@ proc sort
     ;
     by
         AVGEDU
+    ;
+    format
+        AVGEDU 8.2
     ;
 run;

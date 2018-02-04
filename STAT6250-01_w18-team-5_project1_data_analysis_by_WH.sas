@@ -49,6 +49,7 @@ Possible Follow-up Steps: Compare the max by year
 
 proc print
         noobs
+        label
         data = Education_WH1 (obs=1)
     ;
     var
@@ -120,10 +121,14 @@ proc gplot
     title
         'California Education Analysis by counties'
     ;
+    axis1 label = ('County')
+    ;
+    axis2 label = ('Adults with Bachelor or Higher')
+    ;
     plot
         CH2011_15*AREA_NAME
+        / vaxis=axis2 haxis=axis1
     ;
-        axis1 order = (0 to 25000000 by 10000);
 run;
 title;
 footnote;
