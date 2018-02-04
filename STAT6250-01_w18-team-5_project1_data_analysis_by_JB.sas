@@ -1,4 +1,7 @@
 *******************************************************************************;
+**************** 80-character banner for column width reference ***************;
+* (set window width to banner width to calibrate line length to 80 characters *;
+*******************************************************************************;
 
 *
 STAT6250-01_w18-team-5_project1_data_analysis_by_JB.sas
@@ -76,7 +79,7 @@ footnote;
 
 
 title1
-'Research Question: Of the areas that have recently urbanized, what is the percent change in educational attainment for each category between 2000 and 2015?'
+'Research Question: In recently urbanized areas, what is the change in educational attainment for each category from 2000 to 2015?'
 ;
 
 title2
@@ -124,7 +127,7 @@ footnote;
 
 
 title1
-'Research Question: How much has the population of adults grown since 2000 in areas that have become heavily urbanized between 2003 and 2013?'
+'Research Question: How has the population of adults grown in areas that have become heavily urbanized between 2003 and 2013?'
 ;
 
 title2
