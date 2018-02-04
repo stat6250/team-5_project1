@@ -85,6 +85,7 @@ title1
 title2
 'Rationale: We want to explore how the proportions of educational attainment change when an area becomes heavily urbanized.'
 ;
+
 footnote1
 'It appears that in areas that have become more heavily urbanized, the proportion of highly educated people in that area has generally increased.'
 ;
