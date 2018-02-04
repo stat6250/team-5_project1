@@ -17,8 +17,6 @@ in the same directory as this file.
 See the file referenced above for data set properties.
 ;
 
-
-
 * environmental setup;
 
 * set relative file import path to current directory;
@@ -42,14 +40,9 @@ footnote1
 ;
 
 *
-Methodology: This step creates a new temporary dataset from the one created
-in the data prep file, sorting the list of counties first by the increase
-in Rural Urban Continuum Code for the area, then by the 2013 RUCC for that
-area, and then by the 2003 RUCC. This places areas that have increased
-their RUCC the most at the top of the pack.
-
-Then use PROC PRINT to show the states, areas, and RUCC values for the top
-20 urbanized locations.
+Methodology: This step uses PROC PRINT to display columns from the temporary
+file created in the data preparation step. It shows the states, areas, and RUCC
+values for the top 20 most urbanized locations.
 
 Limitations: It is unclear at this point if a significant increase in
 urbanization based upon RUCC will have an impact on educational attainment.
@@ -91,7 +84,7 @@ footnote1
 ;
 
 *
-Methodology: Using the sorted temporary dataset from the previous step,
+Methodology: Reusing the sorted temporary data set from the previous step,
 display the change in proportions for educational attainment in each area
 using the calculated measures found in the data prep file.
 
@@ -140,10 +133,10 @@ footnote1
 ;
 
 *
-Methodology: Using the previous sorted data set, include new measures
-created in the data prep file that compare the population of adults in
-each time period and the percent change in adult population. An earlier
-iteration of this step included the calculations within the analysis
+Methodology: Using the same sorted data set from the previous steps, include
+new measures created in the data prep file that compare the population of
+adults in each time period and the percent change in adult population. An
+earlier iteration of this step included the calculations within the analysis
 file rather than in the data prep file.
 
 Limitations: The population figure is not the true population of a given
