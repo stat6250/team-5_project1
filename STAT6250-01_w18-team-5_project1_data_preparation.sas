@@ -85,10 +85,6 @@ Environmental setup
 ;
 
 *
-Create output formats
-;
-
-*
 Setup environmental parameters
 ;
 
@@ -156,6 +152,9 @@ team members.
 
 Since only county-level data will be used in analyses by Team 5, remove any
 observations of non-counties (i.e. states, countries).
+
+Permanent labels are added to each variable so that when they are shown in
+HTML output, they will have a descriptive name.
 ;
 
 data education_analytic_file;
@@ -241,6 +240,27 @@ data education_analytic_file;
         pop2000
         change_pop2000_2015
         perChange_pop2000_2015
+    ;
+    label
+        FIPS_Code = 'FIPS Code'
+        State = 'State'
+        Area_name = 'County'
+        RUCC2003 = 'Rural Urban CC 2003'
+        RUCC2013 = 'Rural Urban CC 2013'
+        CH2011_15 = 'College or higher 2011-2015'
+        PerCH2011_15 = 'Percent college or higher 2011-2015'
+        LHS2011_15 = 'Less than high school 2011-2015'
+        C13Y2011_15 = 'Some college 2011-2015'
+        HS2011_15 = 'High school only 2011-2015'
+        urban_increase = 'Change in RUCC 2003-2013'
+        change_PerLHS = 'Change percent less than high school'
+        change_PerHS = 'Change percent high school only'
+        change_PerC13 = 'Change percent some college'
+        change_PerCH = 'Change percent college or higher'
+        pop2015 = 'Adult population 2015'
+        pop2000 = 'Adult population 2000'
+        change_pop2000_2015 = 'Change in population 2000-2015'
+        perChange_pop2000_2015 = 'Percent change in population 2000-2015'
     ;
 run;
 
