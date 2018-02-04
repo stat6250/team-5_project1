@@ -97,8 +97,8 @@ however it did not include the last three to five decades which could provide
 better comparison of U.S.A adult's educational growth for each state, because 
 growth in education impacts the growth in economic development.
 
-Possible Follow-up Steps: Since SAS HTML output is limited. Unfortunetely, 
-higher-level titles exhibit different behaviour, causing warning message
+Possible Follow-up Steps: Since SAS HTML output is limited. Unfortunately,
+higher-level titles exhibit different behavior, causing warning message
 in the log for title1, but it do not impact the output.
 ;
 proc gchart
@@ -116,7 +116,8 @@ proc gchart
     axis2 label=(f="Arial/Bold" 
                 "State Grouped by Counties")
     ;
-	title3 "Analysis the Most Well Educated States, USA (2011- 2015)";
+    title3 "Analysis the Most Well Educated States, USA (2011- 2015)"
+    ;
     where
         State in ('DC','CA','MA','CT','NJ','AZ','NY','MD','DE','HI')
     ;
