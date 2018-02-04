@@ -125,7 +125,7 @@ title1
 ;
 
 title2
-'Rationale: Understanding the magnitude of the change in population may help put the percent change of educational attainment into context.'
+'Rationale: Understanding the magnitude of population change may help put the change in educational attainment into context.'
 ;
 
 footnote1
