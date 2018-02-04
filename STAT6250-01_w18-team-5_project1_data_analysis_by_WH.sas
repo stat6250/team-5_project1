@@ -26,7 +26,7 @@ X "cd ""%substr(%sysget(SAS_EXECFILEPATH),1,%eval(%length(%sysget(SAS_EXECFILEPA
 
 
 title1
-'Research Question: Which county has the highest(maximum) education levels for California for the period 2011-2015?'
+'Research Question: Which county has the highest (maximum) education levels for California for the period 2011-2015?'
 ;
 
 title2
@@ -34,7 +34,7 @@ title2
 ;
 
 footnote1
-'It shows that the  maximum educational level for Bachelor Degree or higher, grouped by California for 2011-2015'
+'It shows that the maximum educational level for Bachelor Degree or higher, grouped by California for 2011-2015'
 ;
 *
 Methodology: Use IF statement to remove rows where CH2011_15 would 
