@@ -49,12 +49,13 @@ Possible Follow-up Steps: Compare the max by year
 
 proc print
         noobs
+        label
         data = Education_WH1 (obs=1)
     ;
     var
         State
-        County
-        Adults_with_Bachelor_or_above
+        AREA_NAME
+        CH2011_15
     ;
 run; 
 title;
@@ -125,7 +126,7 @@ proc gplot
     axis2 label = ('Adults with Bachelor or Higher')
     ;
     plot
-        Adults_with_Bachelor_or_above*County
+        CH2011_15*AREA_NAME
         / vaxis=axis2 haxis=axis1
     ;
 run;
