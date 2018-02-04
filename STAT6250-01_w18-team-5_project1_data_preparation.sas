@@ -341,10 +341,6 @@ data
     then
         delete
     ;
-    rename
-        AREA_NAME=County
-	CH2011_15=Adults_with_Bachelor_or_above
-    ;
 run;
 
 proc sort
