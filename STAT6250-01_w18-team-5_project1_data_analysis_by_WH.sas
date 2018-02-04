@@ -64,7 +64,7 @@ footnote;
 
 
 title1
-'Research Question: Which is the least educated state using column Bachelor Defree or higher, 2011-2015?'
+'Research Question: Which is the least educated state using column Bachelor Degree or higher, 2011-2015?'
 ;
 
 title2
@@ -81,7 +81,7 @@ Limitations: This methodology does not account for any States
 with missing data, nor does it attempt to validate data in any way.
 
 Possible Follow-up Steps: More carefully clean the values 
-of the variable Bachelordegree_higher_2011_2015 so that the 
+of the variable CH2011_15 so that the 
 statistics computed do not include any possible illegal values,
 and better handle missing data.
 ;
