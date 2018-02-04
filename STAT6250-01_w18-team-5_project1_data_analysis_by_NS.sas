@@ -52,7 +52,7 @@ with missing data, nor does it attempt to validate data in any way.
 proc print 
         noobs 
             data=Education_NS1 (obs=20)
-                LABEL
+                label
     ;
     label 
         AVGEDU = 
@@ -72,7 +72,7 @@ footnote;
 
 
 title1
-'Research Question: Which State is the most well-educated who attained Bachelor Degree or higher (2011-2015)?'
+'Research Question: Which state has attained the most Bachelor Degree or higher (2011-2015)?'
 ;
 
 title2
@@ -80,7 +80,7 @@ title2
 ;
 
 footnote1
-'Based on the above output, we have the top 10 well educated state who attained the Bachelor Degree or higher educational level (2011-2015).'
+'Based on the above output, we have the top 10 well educated state attained higher educational level (2011-2015).'
 ;
 
 footnote2
@@ -97,8 +97,9 @@ however it did not include the last three to five decades which could provide
 better comparison of U.S.A adult's educational growth for each state, because 
 growth in education impacts the growth in economic development.
 
-Possible Follow-up Steps: May expand this report with late year columns
-for better comparisons.
+Possible Follow-up Steps: Since SAS HTML output is limited. Unfortunetely, 
+higher-level titles exhibit different behaviour, causing warning message
+in the log for title1, but it do not impact the output.
 ;
 proc gchart
         data=Education_NS2
@@ -115,16 +116,17 @@ proc gchart
     axis2 label=(f="Arial/Bold" 
                 "State Grouped by Counties")
     ;
+	title3 "Analysis the Most Well Educated States, USA (2011- 2015)";
     where
         State in ('DC','CA','MA','CT','NJ','AZ','NY','MD','DE','HI')
     ;
     vbar 
         State / discrete type=mean
     sumvar=AVGEDU mean
-    width=15
-    raxis= axis1
-    maxis= axis2
-    coutline=blue
+        width=08
+            raxis=axis1
+                maxis=axis2
+                    coutline=blue
    ;  
 run;
 title;
