@@ -52,19 +52,19 @@ with missing data, nor does it attempt to validate data in any way.
 proc print 
         noobs 
             data=Education_NS1 (obs=20)
-                                     LABEL
-   ;
-   label 
-       AVGEDU = 
+                LABEL
+    ;
+    label 
+        AVGEDU = 
         'Adults Average in USA attained Bachelor Degree or higher (2011-2015)'
-   ;
-   format 
-       AVGEDU comma10.2
-   ;
-   var 
-       State
-       AVGEDU
-   ;
+    ;
+    format 
+        AVGEDU comma10.2
+    ;
+    var 
+        State
+        AVGEDU
+    ;
 run;
 title;
 footnote;
@@ -109,17 +109,18 @@ proc gchart
     pattern1 color=grayCC
     ;
     axis1 label=(a=90 f="Arial/Bold"
-                      "Average of Adults Attained Bachelor Degree or Higher ") 
+                "Average of Adults Attained Bachelor Degree or Higher ") 
     order=(10000 to 300000 by 25000)
     ;
     axis2 label=(f="Arial/Bold" 
-                      "State Grouped by Counties")
+                "State Grouped by Counties")
     ;
     where
-         State in ('DC','CA','MA','CT','NJ','AZ','NY','MD','DE','HI')
+        State in ('DC','CA','MA','CT','NJ','AZ','NY','MD','DE','HI')
     ;
-    vbar State / discrete type=mean
-           sumvar=AVGEDU mean
+    vbar 
+        State / discrete type=mean
+    sumvar=AVGEDU mean
     width=15
     raxis= axis1
     maxis= axis2
