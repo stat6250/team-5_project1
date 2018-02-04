@@ -60,7 +60,6 @@ organize the areas by their most recent level of urbanization.
 Possible Follow-up Steps: Look into how to deal with missing values so that
 the sorting method noted above can be implemented in the future.
 ;
-
 proc print
         noobs
         label
@@ -105,7 +104,6 @@ urbanization.
 Possible Follow-up Steps: Explore percent change in population of adults
 at each level of education between the two time frames.
 ;
-
 proc print
         noobs
         label
@@ -166,7 +164,6 @@ values as percentages. In such a case, any percentages to be represented
 could be displayed using the PERCENT9.1 format, with the word "percent" removed
 from the column labels to eliminate redundancy.
 ;
-
 proc print
         noobs
         label
