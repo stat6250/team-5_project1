@@ -80,7 +80,7 @@ title2
 ;
 
 footnote1
-'Based on the above output, we have the top 10 most well educated state, attained the Bachelor Degree or higher educational level (2011-2015).'
+'Based on the above output, we have the top 10 well educated state who attained the Bachelor Degree or higher educational level (2011-2015).'
 ;
 
 footnote2
@@ -100,23 +100,23 @@ growth in education impacts the growth in economic development.
 Possible Follow-up Steps: May expand this report with late year columns
 for better comparisons.
 ;
-    pattern1 color=grayCC
-    ;
-    axis1 label=(a=90 f="Arial/Bold"
-                     "Average of Adults Attained Bachelor Degree or Higher ") 
-    order=(10000 to 300000 by 25000)
-    ;
-    axis2 label=(f="Arial/Bold" 
-                     "State Grouped by Counties")
-    ;
- proc gchart
+proc gchart
         data=Education_NS2
     ;
     format
         AVGEDU comma10.0
     ;
-    where 
-        State in ('DC','CA','MA','CT','NJ','AZ','NY','MD','DE','HI')
+    pattern1 color=grayCC
+    ;
+    axis1 label=(a=90 f="Arial/Bold"
+                      "Average of Adults Attained Bachelor Degree or Higher ") 
+    order=(10000 to 300000 by 25000)
+    ;
+    axis2 label=(f="Arial/Bold" 
+                      "State Grouped by Counties")
+    ;
+    where
+         State in ('DC','CA','MA','CT','NJ','AZ','NY','MD','DE','HI')
     ;
     vbar State / discrete type=mean
            sumvar=AVGEDU mean
